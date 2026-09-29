@@ -157,12 +157,15 @@
   body {
     min-height: 100%;
     min-height: 100dvh;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-body-value);
+    overflow-x: hidden;
   }
 }
 

@@ -64,7 +64,7 @@ function AboutPage() {
 
         <section
           id="about-content"
-          className="mx-auto flex w-full max-w-[1800px] flex-1 flex-col scroll-mt-20 px-6 py-8 sm:px-10 md:py-12 lg:px-16 xl:px-20"
+          className="mx-auto flex w-full max-w-[1800px] flex-1 flex-col scroll-mt-20 px-4 py-8 sm:px-10 md:py-12 lg:px-16 xl:px-20"
         >
           <div className="grid gap-10 md:grid-cols-2 md:items-start">
           <div className="space-y-5 text-frost leading-relaxed">
@@ -78,13 +78,13 @@ function AboutPage() {
               I care about making things simple, fast and reliable. Good software does not need complicated menus or heavy code—it just needs to work smoothly every single time.
             </p>
 
-            <div className="pt-4 flex flex-wrap gap-3">
-              <Button asChild className="h-11 rounded-full bg-volt px-6 font-semibold text-ink hover:bg-volt/90">
+            <div className="pt-4 flex flex-col sm:flex-row gap-3">
+              <Button asChild className="h-11 w-full sm:w-auto justify-center rounded-full bg-volt px-6 font-semibold text-ink hover:bg-volt/90">
                 <Link to="/build-my-app">
                   Start a project with me <ArrowUpRight className="ml-1 size-4" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" className="h-11 rounded-full border-glass-border bg-glass">
+              <Button asChild variant="outline" className="h-11 w-full sm:w-auto justify-center rounded-full border-glass-border bg-glass">
                 <Link to="/portfolio">See my work</Link>
               </Button>
             </div>

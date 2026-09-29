@@ -86,7 +86,7 @@ export function PageHero({
       </div>
 
       {/* Main hero content container */}
-      <div className="relative mx-auto flex w-full max-w-[1800px] flex-1 flex-col justify-center px-6 py-10 sm:px-10 sm:py-14 md:py-16 lg:px-16 xl:px-20">
+      <div className="relative mx-auto flex w-full max-w-[1800px] flex-1 flex-col justify-center px-4 py-8 sm:px-10 sm:py-14 md:py-16 lg:px-16 xl:px-20">
         <div className="grid grid-cols-12 gap-8 items-end lg:gap-12">
           {/* Left Column: Eyebrow + Headline */}
           <div className="col-span-12 lg:col-span-8">

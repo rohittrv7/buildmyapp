@@ -1,15 +1,15 @@
 import { useState, type ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Menu, X, Mail, MessageCircle } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 import { Button } from "@/components/ui/button";
 
 const navigation = [
-  { label: "Portfolio", to: "/portfolio" },
-  { label: "Store", to: "/store" },
-  { label: "Services", to: "/services" },
-  { label: "Process", to: "/process" },
-  // { label: "Pricing", to: "/pricing" },
-  { label: "About", to: "/about" },
+  { label: "Portfolio", to: "/portfolio", num: "01" },
+  { label: "Store", to: "/store", num: "02" },
+  { label: "Services", to: "/services", num: "03" },
+  { label: "Process", to: "/process", num: "04" },
+  { label: "About", to: "/about", num: "05" },
 ];
 
 export function SiteLayout({ children }: { children: ReactNode }) {
@@ -18,84 +18,171 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex min-h-screen min-h-[100dvh] flex-col overflow-x-hidden bg-ink text-frost antialiased selection:bg-volt selection:text-ink">
-      <header className="sticky top-0 z-50 border-b border-glass-border bg-ink/85 backdrop-blur-xl">
-        <div className="mx-auto flex h-[68px] w-full max-w-[1800px] items-center gap-4 px-6 sm:px-10 lg:px-16 xl:px-20">
+      {/* Luxury Sticky Frosted Navbar */}
+      <header className="sticky top-0 z-50 h-[68px] border-b border-white/[0.08] bg-ink/85 backdrop-blur-2xl transition-all">
+        <div className="mx-auto flex h-full w-full max-w-[1800px] items-center justify-between gap-3 px-4 sm:px-8 lg:px-16 xl:px-20">
+          {/* Brand Logo */}
           <Link
             to="/"
-            className="flex shrink-0 items-center gap-2.5 font-display text-[15px] font-bold"
+            className="group flex shrink-0 items-center gap-2.5 sm:gap-3 font-display transition"
             onClick={() => setOpen(false)}
           >
-            <span className="grid size-8 place-items-center rounded-lg bg-volt text-sm font-bold text-ink">B</span>
-            <span>
-              BuildMyApp <span className="text-xs font-normal text-frost-muted">by Ravana</span>
+            <span className="grid size-8 sm:size-9 place-items-center rounded-xl bg-volt font-display text-sm sm:text-base font-extrabold text-ink shadow-[0_0_20px_rgba(230,255,0,0.3)] transition-transform duration-300 group-hover:scale-105 group-hover:rotate-3">
+              B
             </span>
+            <div className="flex flex-col">
+              <span className="text-sm sm:text-[15px] font-bold tracking-tight text-frost group-hover:text-volt transition-colors">
+                BuildMyApp
+              </span>
+              <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-frost-muted/70">
+                by Ravana
+              </span>
+            </div>
           </Link>
 
-          <nav aria-label="Main navigation" className="ml-auto hidden items-center gap-1 lg:flex">
-            {navigation.map((item) => (
-              <Link
-                to={item.to}
-                key={item.to}
-                className={`rounded-lg px-3 py-2 text-sm transition-colors hover:bg-frost/5 hover:text-frost ${
-                  pathname.startsWith(item.to) ? "text-volt font-medium" : "text-frost/70"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+          {/* Center Floating Capsule Navigation (Desktop) */}
+          <nav
+            aria-label="Main navigation"
+            className="hidden lg:flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.03] p-1.5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] backdrop-blur-xl"
+          >
+            {navigation.map((item) => {
+              const isActive =
+                item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+              return (
+                <Link
+                  to={item.to}
+                  key={item.to}
+                  className={`relative rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-200 ${
+                    isActive
+                      ? "bg-volt text-ink font-semibold shadow-[0_2px_10px_rgba(230,255,0,0.35)]"
+                      : "text-frost-muted hover:text-frost hover:bg-white/[0.05]"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
 
-          <Button asChild className="ml-auto h-10 rounded-full bg-volt px-4 text-sm font-semibold text-ink hover:bg-volt/90 lg:ml-2">
-            <Link to="/build-my-app">
-              Start a project <ArrowUpRight />
-            </Link>
-          </Button>
+          {/* Right Action Buttons */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* WhatsApp Quick Chat */}
+            <a
+              href="https://wa.me/918227910516"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Chat on WhatsApp"
+              className="hidden sm:inline-flex size-9 sm:size-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.03] text-frost-muted transition hover:border-volt/40 hover:text-volt hover:bg-volt/5"
+            >
+              <MessageCircle className="size-4" />
+            </a>
 
-          <Button
-            variant="outline"
-            size="icon"
-            aria-label={open ? "Close navigation" : "Open navigation"}
-            aria-expanded={open}
-            className="size-10 shrink-0 rounded-full border-glass-border bg-glass lg:hidden"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <X /> : <Menu />}
-          </Button>
+            {/* Start a project CTA */}
+            <Button
+              asChild
+              className="h-9 sm:h-10 rounded-full bg-volt px-3 sm:px-5 text-xs font-semibold text-ink shadow-[0_4px_16px_rgba(230,255,0,0.25)] transition hover:bg-volt/95 hover:shadow-[0_6px_22px_rgba(230,255,0,0.4)] hover:-translate-y-0.5"
+            >
+              <Link to="/build-my-app">
+                <span className="hidden sm:inline">Start a project</span>
+                <span className="sm:hidden">Start project</span>
+                <ArrowUpRight className="ml-1 size-3 sm:size-3.5" />
+              </Link>
+            </Button>
+
+            {/* Mobile Hamburger Button */}
+            <button
+              type="button"
+              aria-label={open ? "Close navigation" : "Open navigation"}
+              aria-expanded={open}
+              className="lg:hidden grid size-10 place-items-center rounded-full border border-white/[0.08] bg-white/[0.04] text-frost transition hover:border-volt/40 hover:text-volt"
+              onClick={() => setOpen(!open)}
+            >
+              {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            </button>
+          </div>
         </div>
 
-        {open && (
-          <nav aria-label="Mobile navigation" className="grid gap-1 border-t border-glass-border bg-ink-soft p-4 lg:hidden">
-            {navigation.map((item) => (
-              <Link
-                to={item.to}
-                key={item.to}
-                onClick={() => setOpen(false)}
-                className="rounded-lg px-4 py-3 text-sm text-frost/80 hover:bg-frost/5"
-              >
-                {item.label}
-              </Link>
-            ))}
-            {[
-              { label: "Journal", to: "/blog" },
-              { label: "Contact", to: "/contact" },
-            ].map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                onClick={() => setOpen(false)}
-                className="rounded-lg px-4 py-3 text-sm text-frost/80 hover:bg-frost/5"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        )}
+        {/* Mobile Luxury Slide Drawer */}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed inset-x-0 top-[68px] bottom-0 z-40 flex flex-col justify-between overflow-y-auto border-t border-white/[0.08] bg-ink/95 p-6 backdrop-blur-2xl lg:hidden"
+            >
+              <nav aria-label="Mobile navigation" className="flex flex-col gap-2">
+                {navigation.map((item) => {
+                  const isActive =
+                    item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+                  return (
+                    <Link
+                      to={item.to}
+                      key={item.to}
+                      onClick={() => setOpen(false)}
+                      className={`flex items-center justify-between rounded-2xl border px-5 py-3.5 transition-all ${
+                        isActive
+                          ? "border-volt/40 bg-volt/10 text-volt font-semibold"
+                          : "border-white/[0.06] bg-white/[0.02] text-frost hover:border-white/20"
+                      }`}
+                    >
+                      <span className="font-display text-lg font-bold">{item.label}</span>
+                      <span className="font-mono text-xs text-frost-muted">{item.num}</span>
+                    </Link>
+                  );
+                })}
+
+                <div className="my-2 border-t border-white/[0.08]" />
+
+                <div className="grid grid-cols-2 gap-2">
+                  <Link
+                    to="/blog"
+                    onClick={() => setOpen(false)}
+                    className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3 text-center text-xs font-medium text-frost-muted hover:text-frost"
+                  >
+                    Journal
+                  </Link>
+                  <Link
+                    to="/contact"
+                    onClick={() => setOpen(false)}
+                    className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3 text-center text-xs font-medium text-frost-muted hover:text-frost"
+                  >
+                    Contact
+                  </Link>
+                </div>
+              </nav>
+
+              {/* Bottom drawer actions */}
+              <div className="mt-8 space-y-3 pt-6 border-t border-white/[0.08]">
+                <Button
+                  asChild
+                  className="h-12 w-full rounded-full bg-volt font-semibold text-ink shadow-[0_6px_20px_rgba(230,255,0,0.3)] hover:bg-volt/95"
+                >
+                  <Link to="/build-my-app" onClick={() => setOpen(false)}>
+                    Start a project with me <ArrowUpRight className="ml-1 size-4" />
+                  </Link>
+                </Button>
+
+                <a
+                  href="https://wa.me/918227910516"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] text-sm font-medium text-frost hover:border-volt/40 hover:text-volt transition"
+                >
+                  <MessageCircle className="size-4 text-volt" />
+                  <span>WhatsApp: +91 8227910516</span>
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       <div className="flex flex-1 flex-col">{children}</div>
 
       <footer className="mt-auto border-t border-glass-border bg-ink-soft/60">
-        <div className="mx-auto grid w-full max-w-[1800px] gap-9 px-6 py-10 sm:px-10 md:grid-cols-[1.4fr_1fr_1fr] md:py-14 lg:px-16 xl:px-20">
+        <div className="mx-auto grid w-full max-w-[1800px] gap-8 px-4 py-10 sm:px-10 md:grid-cols-[1.4fr_1fr_1fr] md:py-14 lg:px-16 xl:px-20">
           <div>
             <Link to="/" className="inline-flex items-center gap-2.5 font-display font-semibold">
               <span className="grid size-8 place-items-center rounded-lg bg-volt text-sm font-bold text-ink">B</span>
@@ -189,7 +276,7 @@ export function SectionHeading({
 export function PageIntro({ index, title, description }: { index: string; title: string; description: string }) {
   return (
     <section className="studio-grid border-b border-glass-border">
-      <div className="mx-auto w-full max-w-[1800px] px-6 py-8 sm:px-10 md:py-12 lg:px-16 xl:px-20">
+      <div className="mx-auto w-full max-w-[1800px] px-4 py-8 sm:px-10 md:py-12 lg:px-16 xl:px-20">
         <p className="text-xs uppercase tracking-[.18em] text-volt font-mono font-medium">{index} / BuildMyApp by Ravana</p>
         <h1 className="mt-3 max-w-[28ch] font-display text-3xl font-semibold leading-[1.1] text-balance sm:text-4xl md:text-5xl">
           {title}

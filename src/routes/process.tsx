@@ -82,7 +82,7 @@ function ProcessPage() {
 
         <section
           id="process-steps"
-          className="mx-auto flex w-full max-w-[1800px] flex-1 flex-col scroll-mt-20 px-6 py-8 sm:px-10 md:py-12 lg:px-16 xl:px-20"
+          className="mx-auto flex w-full max-w-[1800px] flex-1 flex-col scroll-mt-20 px-4 py-8 sm:px-10 md:py-12 lg:px-16 xl:px-20"
         >
           <div className="mb-8 flex flex-col gap-2">
             <h2 className="font-display text-xs font-semibold uppercase tracking-widest text-frost-muted">
@@ -131,12 +131,12 @@ function ProcessPage() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center justify-between gap-6 rounded-2xl border border-glass-border bg-gradient-to-r from-ink-soft to-volt/10 p-8 sm:flex-row sm:p-10">
+        <div className="mt-16 flex flex-col items-center justify-between gap-6 rounded-2xl border border-glass-border bg-gradient-to-r from-ink-soft to-volt/10 p-6 sm:flex-row sm:p-10">
           <div>
             <h3 className="font-display text-2xl font-bold text-frost">Ready to get started?</h3>
             <p className="mt-2 text-sm text-frost-muted">Tell me your idea and let's start with Step 1.</p>
           </div>
-          <Button asChild className="h-12 shrink-0 rounded-full bg-volt px-6 font-semibold text-ink hover:bg-volt/90">
+          <Button asChild className="h-12 w-full sm:w-auto shrink-0 rounded-full bg-volt px-6 font-semibold text-ink hover:bg-volt/90 justify-center">
             <Link to="/build-my-app">
               Tell me your idea <ArrowUpRight className="ml-1.5 size-4" />
             </Link>

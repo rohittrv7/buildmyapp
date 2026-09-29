@@ -52,9 +52,9 @@ function ContactPage() {
       title="Contact Me"
       description="Message me directly. I will get back to you within 24 hours."
     >
-      <section className="mx-auto flex w-full max-w-[1800px] flex-1 flex-col px-6 py-8 sm:px-10 md:py-12 lg:px-16 xl:px-20">
+      <section className="mx-auto flex w-full max-w-[1800px] flex-1 flex-col px-4 py-8 sm:px-10 md:py-12 lg:px-16 xl:px-20">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_.9fr]">
-          <div className="rounded-2xl border border-glass-border bg-ink-soft/80 p-6 sm:p-10">
+          <div className="rounded-2xl border border-glass-border bg-ink-soft/80 p-5 sm:p-10">
             {sent ? (
               <div className="py-12 text-center">
                 <span className="inline-grid size-14 place-items-center rounded-full bg-volt/20 text-volt">

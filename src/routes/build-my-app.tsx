@@ -75,13 +75,13 @@ function BuildMyAppPage() {
       title="Tell Me About Your App"
       description="Fill in a few simple details below. I will reply with what I can build, how long it takes, and the exact price."
     >
-      <section className="mx-auto flex w-full max-w-[1800px] flex-1 flex-col justify-center px-6 py-8 sm:px-10 md:py-12 lg:px-16 xl:px-20">
+      <section className="mx-auto flex w-full max-w-[1800px] flex-1 flex-col justify-center px-4 py-8 sm:px-10 md:py-12 lg:px-16 xl:px-20">
         {submitted ? (
-          <div className="mx-auto max-w-2xl rounded-2xl border border-volt/40 bg-ink-soft p-8 text-center sm:p-12 shadow-2xl">
+          <div className="mx-auto max-w-2xl rounded-2xl border border-volt/40 bg-ink-soft p-6 text-center sm:p-12 shadow-2xl">
             <span className="inline-grid size-16 place-items-center rounded-full bg-volt/20 text-volt">
               <Check className="size-8" />
             </span>
-            <h2 className="mt-6 font-display text-3xl font-bold text-frost">
+            <h2 className="mt-6 font-display text-2xl sm:text-3xl font-bold text-frost">
               Thank you! I will contact you within 24 hours.
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-frost-muted">
@@ -93,18 +93,18 @@ function BuildMyAppPage() {
               </p>
             )}
 
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Button asChild className="rounded-full bg-volt font-semibold text-ink hover:bg-volt/90 px-6">
+            <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
+              <Button asChild className="rounded-full bg-volt font-semibold text-ink hover:bg-volt/90 px-6 w-full sm:w-auto justify-center">
                 <Link to="/">Back to Homepage</Link>
               </Button>
-              <Button asChild variant="outline" className="rounded-full border-glass-border bg-glass">
+              <Button asChild variant="outline" className="rounded-full border-glass-border bg-glass w-full sm:w-auto justify-center">
                 <Link to="/portfolio">See My Work</Link>
               </Button>
             </div>
           </div>
         ) : (
           <div className="grid gap-10 lg:grid-cols-[1.3fr_.7fr]">
-            <form onSubmit={handleSubmit} className="space-y-8 rounded-2xl border border-glass-border bg-ink-soft/80 p-6 sm:p-10">
+            <form onSubmit={handleSubmit} className="space-y-8 rounded-2xl border border-glass-border bg-ink-soft/80 p-5 sm:p-10">
               {/* Step 1 */}
               <div>
                 <label className="text-xs font-bold uppercase tracking-wider text-volt font-mono">

@@ -167,7 +167,7 @@ function HomePage() {
           </div>
 
           {/* Hero Content */}
-          <div className="relative mx-auto flex w-full max-w-[1800px] flex-1 flex-col justify-center px-6 py-12 sm:px-10 sm:py-16 md:py-20 lg:px-16 xl:px-20">
+          <div className="relative mx-auto flex w-full max-w-[1800px] flex-1 flex-col justify-center px-4 py-10 sm:px-10 sm:py-16 md:py-20 lg:px-16 xl:px-20">
             <div className="max-w-4xl">
               <motion.div
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
@@ -181,7 +181,7 @@ function HomePage() {
                 </p>
               </motion.div>
 
-              <h1 className="font-display text-[clamp(2.75rem,7.5vw,8.5rem)] font-extrabold leading-[0.92] tracking-[-0.04em] text-frost">
+              <h1 className="font-display text-[clamp(2.5rem,7.5vw,8.5rem)] font-extrabold leading-[0.92] tracking-[-0.04em] text-frost">
                 <span className="block overflow-hidden py-1">
                   <motion.span
                     className="block text-frost"
@@ -233,11 +233,11 @@ function HomePage() {
                     ? { duration: 0 }
                     : { duration: 0.6, delay: 0.48, ease: [0.16, 1, 0.3, 1] }
                 }
-                className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4"
+                className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4"
               >
                 <Button
                   asChild
-                  className="h-12 rounded-full bg-volt px-7 text-sm font-semibold text-ink shadow-[0_10px_30px_-10px_rgba(230,255,0,0.35)] transition hover:bg-volt/95 hover:-translate-y-0.5"
+                  className="h-12 w-full sm:w-auto rounded-full bg-volt px-7 text-sm font-semibold text-ink shadow-[0_10px_30px_-10px_rgba(230,255,0,0.35)] transition hover:bg-volt/95 hover:-translate-y-0.5 justify-center"
                 >
                   <Link to="/build-my-app">
                     Start a project <ArrowUpRight className="ml-1 size-4" />
@@ -246,7 +246,7 @@ function HomePage() {
                 <Button
                   asChild
                   variant="outline"
-                  className="h-12 rounded-full border-glass-border bg-glass px-7 text-sm font-medium text-frost transition hover:border-white/30 hover:bg-glass/90"
+                  className="h-12 w-full sm:w-auto rounded-full border-glass-border bg-glass px-7 text-sm font-medium text-frost transition hover:border-white/30 hover:bg-glass/90 justify-center"
                 >
                   <Link to="/portfolio">
                     See my work
@@ -318,7 +318,7 @@ function HomePage() {
         </section>
 
         {/* 3. What I Build */}
-        <section className="mx-auto w-full max-w-[1800px] px-6 py-14 sm:px-10 lg:px-16 xl:px-20 md:py-20">
+        <section className="mx-auto w-full max-w-[1800px] px-4 py-12 sm:px-10 lg:px-16 xl:px-20 md:py-20">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-10">
             <div>
               <p className="font-mono text-xs uppercase tracking-[.18em] text-volt font-medium">
@@ -363,8 +363,8 @@ function HomePage() {
         </section>
 
         {/* 4. Featured Work (Asymmetric 3-Card Layout) */}
-        <section className="border-t border-glass-border bg-ink-soft/30 py-14 sm:py-20">
-          <div className="mx-auto w-full max-w-[1800px] px-6 sm:px-10 lg:px-16 xl:px-20">
+        <section className="border-t border-glass-border bg-ink-soft/30 py-12 sm:py-20">
+          <div className="mx-auto w-full max-w-[1800px] px-4 sm:px-10 lg:px-16 xl:px-20">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-10">
               <div>
                 <p className="font-mono text-xs uppercase tracking-[.18em] text-volt font-medium">
@@ -403,8 +403,8 @@ function HomePage() {
         </section>
 
         {/* 5. Numbers */}
-        <section className="border-t border-glass-border bg-ink py-14 sm:py-20">
-          <div className="mx-auto w-full max-w-[1800px] px-6 sm:px-10 lg:px-16 xl:px-20">
+        <section className="border-t border-glass-border bg-ink py-12 sm:py-20">
+          <div className="mx-auto w-full max-w-[1800px] px-4 sm:px-10 lg:px-16 xl:px-20">
             <div className="mb-10">
               <p className="font-mono text-xs uppercase tracking-[.18em] text-volt font-medium">
                 03 / BY THE NUMBERS
@@ -444,8 +444,8 @@ function HomePage() {
         </section>
 
         {/* 6. How It Works */}
-        <section className="border-t border-glass-border bg-ink-soft/40 py-14 sm:py-20">
-          <div className="mx-auto w-full max-w-[1800px] px-6 sm:px-10 lg:px-16 xl:px-20">
+        <section className="border-t border-glass-border bg-ink-soft/40 py-12 sm:py-20">
+          <div className="mx-auto w-full max-w-[1800px] px-4 sm:px-10 lg:px-16 xl:px-20">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-12">
               <div>
                 <p className="font-mono text-xs uppercase tracking-[.18em] text-volt font-medium">
@@ -512,8 +512,8 @@ function HomePage() {
         </section>
 
         {/* 7. Why Work With Me */}
-        <section className="border-t border-glass-border bg-ink py-14 sm:py-20">
-          <div className="mx-auto w-full max-w-[1800px] px-6 sm:px-10 lg:px-16 xl:px-20">
+        <section className="border-t border-glass-border bg-ink py-12 sm:py-20">
+          <div className="mx-auto w-full max-w-[1800px] px-4 sm:px-10 lg:px-16 xl:px-20">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
               {/* Left sticky column */}
               <div className="lg:col-span-5">
@@ -581,8 +581,8 @@ function HomePage() {
         </section>
 
         {/* 8. Store Teaser */}
-        <section className="border-t border-glass-border bg-ink-soft/40 py-14 sm:py-20">
-          <div className="mx-auto w-full max-w-[1800px] px-6 sm:px-10 lg:px-16 xl:px-20">
+        <section className="border-t border-glass-border bg-ink-soft/40 py-12 sm:py-20">
+          <div className="mx-auto w-full max-w-[1800px] px-4 sm:px-10 lg:px-16 xl:px-20">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between mb-8">
               <div>
                 <p className="font-mono text-xs uppercase tracking-[.18em] text-volt font-medium">
@@ -601,7 +601,7 @@ function HomePage() {
             </div>
 
             {/* Wide banner card */}
-            <div className="relative overflow-hidden rounded-[28px] border border-glass-border bg-gradient-to-br from-ink-soft via-glass to-volt/5 p-7 sm:p-10 lg:p-12">
+            <div className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] border border-glass-border bg-gradient-to-br from-ink-soft via-glass to-volt/5 p-5 sm:p-10 lg:p-12">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div className="lg:col-span-8 space-y-4">
                   <div className="flex flex-wrap items-center gap-2">
@@ -618,17 +618,17 @@ function HomePage() {
                   <p className="max-w-[54ch] text-sm sm:text-base leading-relaxed text-frost-muted">
                     A simple daily planner that opens right in your web browser. Set three daily goals, track habits offline, and keep your workday distraction-free.
                   </p>
-                  <div className="pt-2 flex flex-wrap items-center gap-4">
+                  <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
                     <a
                       href="/downloads/focus-board.html"
                       download
-                      className="inline-flex items-center gap-2 rounded-full bg-volt px-6 py-3 text-sm font-semibold text-ink shadow-[0_6px_20px_rgba(230,255,0,0.25)] transition hover:bg-volt/95"
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-volt px-6 py-3 text-sm font-semibold text-ink shadow-[0_6px_20px_rgba(230,255,0,0.25)] transition hover:bg-volt/95"
                     >
                       <ArrowDownToLine className="size-4" /> Download Free
                     </a>
                     <Link
                       to="/store"
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-frost-muted hover:text-frost transition"
+                      className="inline-flex items-center justify-center gap-1.5 text-sm font-medium text-frost-muted hover:text-frost transition py-2"
                     >
                       Browse all ready-made software <ArrowRight className="size-3.5" />
                     </Link>
@@ -655,7 +655,7 @@ function HomePage() {
 
         {/* 9. Pricing Teaser Strip */}
         <section className="border-y border-glass-border bg-ink-soft/60 py-5">
-          <div className="mx-auto flex w-full max-w-[1800px] flex-col sm:flex-row items-center justify-between gap-4 px-6 sm:px-10 lg:px-16 xl:px-20">
+          <div className="mx-auto flex w-full max-w-[1800px] flex-col sm:flex-row items-center justify-between gap-4 px-4 sm:px-10 lg:px-16 xl:px-20">
             <div className="flex items-center gap-3">
               <span className="size-2 rounded-full bg-volt animate-pulse shrink-0" />
               <p className="font-display text-base sm:text-lg font-semibold text-frost">
@@ -665,7 +665,7 @@ function HomePage() {
             <Button
               asChild
               variant="outline"
-              className="h-10 rounded-full border-glass-border bg-glass px-5 text-xs font-semibold text-frost hover:border-volt hover:text-volt shrink-0"
+              className="h-10 rounded-full border-glass-border bg-glass px-5 text-xs font-semibold text-frost hover:border-volt hover:text-volt shrink-0 w-full sm:w-auto justify-center"
             >
               <Link to="/pricing">
                 View simple pricing <ArrowRight className="ml-1.5 size-3.5" />
@@ -675,29 +675,29 @@ function HomePage() {
         </section>
 
         {/* 10. Final Call to Action */}
-        <section className="relative overflow-hidden py-20 sm:py-28 text-center bg-ink">
+        <section className="relative overflow-hidden py-16 sm:py-28 text-center bg-ink">
           {/* Centered green glow */}
           <div
             aria-hidden
             className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-[500px] rounded-full bg-volt/15 blur-[140px]"
           />
 
-          <div className="relative mx-auto w-full max-w-3xl px-6">
+          <div className="relative mx-auto w-full max-w-3xl px-4 sm:px-6">
             <p className="font-mono text-xs uppercase tracking-[.18em] text-volt font-medium">
               07 / GET IN TOUCH
             </p>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-frost">
+            <h2 className="mt-4 font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-frost">
               Have an idea? <br className="hidden sm:inline" />
               <span className="text-volt">Let's build it.</span>
             </h2>
-            <p className="mt-4 text-base sm:text-lg leading-relaxed text-frost-muted max-w-[48ch] mx-auto">
+            <p className="mt-4 text-sm sm:text-lg leading-relaxed text-frost-muted max-w-[48ch] mx-auto">
               Tell me what you are planning. I'll reply with a straightforward plan, fixed price, and honest timeline.
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
               <Button
                 asChild
-                className="h-12 rounded-full bg-volt px-8 text-sm font-semibold text-ink shadow-[0_10px_30px_-10px_rgba(230,255,0,0.35)] transition hover:bg-volt/95 hover:-translate-y-0.5"
+                className="h-12 w-full sm:w-auto rounded-full bg-volt px-8 text-sm font-semibold text-ink shadow-[0_10px_30px_-10px_rgba(230,255,0,0.35)] transition hover:bg-volt/95 hover:-translate-y-0.5 justify-center"
               >
                 <Link to="/build-my-app">
                   Start a project <ArrowUpRight className="ml-1.5 size-4" />
@@ -707,7 +707,7 @@ function HomePage() {
                 href="https://wa.me/918227910516"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-12 items-center gap-2 rounded-full border border-glass-border bg-glass px-7 text-sm font-medium text-frost hover:border-volt hover:text-volt transition backdrop-blur-md"
+                className="inline-flex h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-glass-border bg-glass px-7 text-sm font-medium text-frost hover:border-volt hover:text-volt transition backdrop-blur-md"
               >
                 <MessageCircle className="size-4 text-volt" />
                 <span>Chat on WhatsApp</span>

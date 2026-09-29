@@ -59,7 +59,7 @@ function StorePage() {
 
         <section
           id="products"
-          className="mx-auto flex w-full max-w-[1800px] flex-1 flex-col scroll-mt-20 px-6 py-8 sm:px-10 md:py-12 lg:px-16 xl:px-20"
+          className="mx-auto flex w-full max-w-[1800px] flex-1 flex-col scroll-mt-20 px-4 py-8 sm:px-10 md:py-12 lg:px-16 xl:px-20"
         >
           {/* Section heading & filter bar */}
           <div className="mb-6 flex flex-col gap-4">

@@ -58,7 +58,7 @@ function PortfolioPage() {
         {/* Content & Filter Section */}
         <section
           id="projects"
-          className="mx-auto flex w-full max-w-[1800px] flex-1 flex-col scroll-mt-20 px-6 py-8 sm:px-10 md:py-12 lg:px-16 xl:px-20"
+          className="mx-auto flex w-full max-w-[1800px] flex-1 flex-col scroll-mt-20 px-4 py-8 sm:px-10 md:py-12 lg:px-16 xl:px-20"
         >
           {/* Small heading above the pills */}
           <div className="mb-4 flex items-center justify-between">
