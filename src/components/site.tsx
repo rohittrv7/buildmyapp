@@ -24,19 +24,42 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (open) {
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+      }
     }
     return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [open]);
 
   return (
     <div className="flex min-h-screen min-h-[100dvh] flex-col overflow-x-hidden bg-ink text-frost antialiased selection:bg-volt selection:text-ink">
       {/* Luxury Sticky Frosted Navbar */}
-      <header className="sticky top-0 z-50 h-[68px] border-b border-white/[0.08] bg-ink/90 backdrop-blur-2xl transition-all">
+      <header className="sticky top-0 z-40 h-[68px] border-b border-white/[0.08] bg-ink/90 backdrop-blur-2xl transition-all">
         <div className="mx-auto flex h-full w-full max-w-[1800px] items-center justify-between gap-3 px-4 sm:px-8 lg:px-16 xl:px-20">
           {/* Brand Logo */}
           <Link
@@ -109,88 +132,136 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             {/* Mobile Hamburger Button */}
             <button
               type="button"
-              aria-label={open ? "Close navigation" : "Open navigation"}
+              aria-label="Open navigation"
               aria-expanded={open}
               className="lg:hidden grid size-10 place-items-center rounded-full border border-white/[0.08] bg-white/[0.04] text-frost transition hover:border-volt/40 hover:text-volt"
-              onClick={() => setOpen(!open)}
+              onClick={() => setOpen(true)}
             >
-              {open ? <X className="size-5" /> : <Menu className="size-5" />}
+              <Menu className="size-5" />
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Luxury Slide Drawer - OUTSIDE header so backdrop-filter does NOT trap fixed position */}
+      {/* Mobile Luxury Fullscreen Overlay - Fully covers screen, 0 background leak, 0 background scroll */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-x-0 top-[68px] bottom-0 z-50 flex flex-col justify-between overflow-y-auto border-t border-white/[0.08] bg-ink p-6 backdrop-blur-2xl lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex flex-col bg-ink lg:hidden overscroll-contain"
           >
-            <nav aria-label="Mobile navigation" className="flex flex-col gap-2">
-              {navigation.map((item) => {
-                const isActive =
-                  item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
-                return (
-                  <Link
-                    to={item.to}
-                    key={item.to}
-                    onClick={() => setOpen(false)}
-                    className={`flex items-center justify-between rounded-2xl border px-5 py-3.5 transition-all ${
-                      isActive
-                        ? "border-volt/40 bg-volt/10 text-volt font-semibold"
-                        : "border-white/[0.06] bg-white/[0.02] text-frost hover:border-white/20"
-                    }`}
-                  >
-                    <span className="font-display text-lg font-bold">{item.label}</span>
-                    <span className="font-mono text-xs text-frost-muted">{item.num}</span>
+            {/* Modal Top Bar */}
+            <div className="flex h-[68px] shrink-0 items-center justify-between border-b border-white/[0.08] px-4 sm:px-8 bg-ink">
+              {/* Brand Logo */}
+              <Link
+                to="/"
+                className="group flex shrink-0 items-center gap-2.5 sm:gap-3 font-display"
+                onClick={() => setOpen(false)}
+              >
+                <span className="grid size-8 sm:size-9 place-items-center rounded-xl bg-volt font-display text-sm sm:text-base font-extrabold text-ink shadow-[0_0_20px_rgba(230,255,0,0.3)]">
+                  B
+                </span>
+                <div className="flex flex-col">
+                  <span className="text-sm sm:text-[15px] font-bold tracking-tight text-frost">
+                    BuildMyApp
+                  </span>
+                  <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-wider text-frost-muted/70">
+                    by Ravana
+                  </span>
+                </div>
+              </Link>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-2 sm:gap-3">
+                <Button
+                  asChild
+                  className="h-9 sm:h-10 rounded-full bg-volt px-3 sm:px-5 text-xs font-semibold text-ink shadow-[0_4px_16px_rgba(230,255,0,0.25)]"
+                >
+                  <Link to="/build-my-app" onClick={() => setOpen(false)}>
+                    <span className="hidden sm:inline">Start a project</span>
+                    <span className="sm:hidden">Start project</span>
+                    <ArrowUpRight className="ml-1 size-3 sm:size-3.5" />
                   </Link>
-                );
-              })}
+                </Button>
 
-              <div className="my-2 border-t border-white/[0.08]" />
-
-              <div className="grid grid-cols-2 gap-2">
-                <Link
-                  to="/blog"
+                <button
+                  type="button"
+                  aria-label="Close navigation"
+                  className="grid size-10 place-items-center rounded-full border border-white/[0.08] bg-white/[0.04] text-frost transition hover:border-volt/40 hover:text-volt"
                   onClick={() => setOpen(false)}
-                  className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3 text-center text-xs font-medium text-frost-muted hover:text-frost"
                 >
-                  Journal
-                </Link>
-                <Link
-                  to="/contact"
-                  onClick={() => setOpen(false)}
-                  className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3 text-center text-xs font-medium text-frost-muted hover:text-frost"
-                >
-                  Contact
-                </Link>
+                  <X className="size-5" />
+                </button>
               </div>
-            </nav>
+            </div>
 
-            {/* Bottom drawer actions */}
-            <div className="mt-8 space-y-3 pt-6 border-t border-white/[0.08]">
-              <Button
-                asChild
-                className="h-12 w-full rounded-full bg-volt font-semibold text-ink shadow-[0_6px_20px_rgba(230,255,0,0.3)] hover:bg-volt/95"
-              >
-                <Link to="/build-my-app" onClick={() => setOpen(false)}>
-                  Start a project with me <ArrowUpRight className="ml-1 size-4" />
-                </Link>
-              </Button>
+            {/* Modal Scrollable Body */}
+            <div className="flex flex-1 flex-col justify-between overflow-y-auto overscroll-contain p-6">
+              <nav aria-label="Mobile navigation" className="flex flex-col gap-2">
+                {navigation.map((item) => {
+                  const isActive =
+                    item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+                  return (
+                    <Link
+                      to={item.to}
+                      key={item.to}
+                      onClick={() => setOpen(false)}
+                      className={`flex items-center justify-between rounded-2xl border px-5 py-3.5 transition-all ${
+                        isActive
+                          ? "border-volt/40 bg-volt/10 text-volt font-semibold"
+                          : "border-white/[0.06] bg-white/[0.02] text-frost hover:border-white/20"
+                      }`}
+                    >
+                      <span className="font-display text-lg font-bold">{item.label}</span>
+                      <span className="font-mono text-xs text-frost-muted">{item.num}</span>
+                    </Link>
+                  );
+                })}
 
-              <a
-                href="https://wa.me/918227910516"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] text-sm font-medium text-frost hover:border-volt/40 hover:text-volt transition"
-              >
-                <MessageCircle className="size-4 text-volt" />
-                <span>WhatsApp: +91 8227910516</span>
-              </a>
+                <div className="my-2 border-t border-white/[0.08]" />
+
+                <div className="grid grid-cols-2 gap-2">
+                  <Link
+                    to="/blog"
+                    onClick={() => setOpen(false)}
+                    className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3 text-center text-xs font-medium text-frost-muted hover:text-frost"
+                  >
+                    Journal
+                  </Link>
+                  <Link
+                    to="/contact"
+                    onClick={() => setOpen(false)}
+                    className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3 text-center text-xs font-medium text-frost-muted hover:text-frost"
+                  >
+                    Contact
+                  </Link>
+                </div>
+              </nav>
+
+              {/* Bottom drawer actions */}
+              <div className="mt-8 space-y-3 pt-6 border-t border-white/[0.08]">
+                <Button
+                  asChild
+                  className="h-12 w-full rounded-full bg-volt font-semibold text-ink shadow-[0_6px_20px_rgba(230,255,0,0.3)] hover:bg-volt/95"
+                >
+                  <Link to="/build-my-app" onClick={() => setOpen(false)}>
+                    Start a project with me <ArrowUpRight className="ml-1 size-4" />
+                  </Link>
+                </Button>
+
+                <a
+                  href="https://wa.me/918227910516"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] text-sm font-medium text-frost hover:border-volt/40 hover:text-volt transition"
+                >
+                  <MessageCircle className="size-4 text-volt" />
+                  <span>WhatsApp: +91 8227910516</span>
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
