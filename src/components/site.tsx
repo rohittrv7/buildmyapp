@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Menu, X, Mail, MessageCircle } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
@@ -16,10 +16,27 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const pathname = useRouterState({ select: (state) => state.location.pathname });
 
+  // Auto-close menu when route changes
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <div className="flex min-h-screen min-h-[100dvh] flex-col overflow-x-hidden bg-ink text-frost antialiased selection:bg-volt selection:text-ink">
       {/* Luxury Sticky Frosted Navbar */}
-      <header className="sticky top-0 z-50 h-[68px] border-b border-white/[0.08] bg-ink/85 backdrop-blur-2xl transition-all">
+      <header className="sticky top-0 z-50 h-[68px] border-b border-white/[0.08] bg-ink/90 backdrop-blur-2xl transition-all">
         <div className="mx-auto flex h-full w-full max-w-[1800px] items-center justify-between gap-3 px-4 sm:px-8 lg:px-16 xl:px-20">
           {/* Brand Logo */}
           <Link
@@ -101,83 +118,83 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </button>
           </div>
         </div>
-
-        {/* Mobile Luxury Slide Drawer */}
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed inset-x-0 top-[68px] bottom-0 z-40 flex flex-col justify-between overflow-y-auto border-t border-white/[0.08] bg-ink/95 p-6 backdrop-blur-2xl lg:hidden"
-            >
-              <nav aria-label="Mobile navigation" className="flex flex-col gap-2">
-                {navigation.map((item) => {
-                  const isActive =
-                    item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
-                  return (
-                    <Link
-                      to={item.to}
-                      key={item.to}
-                      onClick={() => setOpen(false)}
-                      className={`flex items-center justify-between rounded-2xl border px-5 py-3.5 transition-all ${
-                        isActive
-                          ? "border-volt/40 bg-volt/10 text-volt font-semibold"
-                          : "border-white/[0.06] bg-white/[0.02] text-frost hover:border-white/20"
-                      }`}
-                    >
-                      <span className="font-display text-lg font-bold">{item.label}</span>
-                      <span className="font-mono text-xs text-frost-muted">{item.num}</span>
-                    </Link>
-                  );
-                })}
-
-                <div className="my-2 border-t border-white/[0.08]" />
-
-                <div className="grid grid-cols-2 gap-2">
-                  <Link
-                    to="/blog"
-                    onClick={() => setOpen(false)}
-                    className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3 text-center text-xs font-medium text-frost-muted hover:text-frost"
-                  >
-                    Journal
-                  </Link>
-                  <Link
-                    to="/contact"
-                    onClick={() => setOpen(false)}
-                    className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3 text-center text-xs font-medium text-frost-muted hover:text-frost"
-                  >
-                    Contact
-                  </Link>
-                </div>
-              </nav>
-
-              {/* Bottom drawer actions */}
-              <div className="mt-8 space-y-3 pt-6 border-t border-white/[0.08]">
-                <Button
-                  asChild
-                  className="h-12 w-full rounded-full bg-volt font-semibold text-ink shadow-[0_6px_20px_rgba(230,255,0,0.3)] hover:bg-volt/95"
-                >
-                  <Link to="/build-my-app" onClick={() => setOpen(false)}>
-                    Start a project with me <ArrowUpRight className="ml-1 size-4" />
-                  </Link>
-                </Button>
-
-                <a
-                  href="https://wa.me/918227910516"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] text-sm font-medium text-frost hover:border-volt/40 hover:text-volt transition"
-                >
-                  <MessageCircle className="size-4 text-volt" />
-                  <span>WhatsApp: +91 8227910516</span>
-                </a>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </header>
+
+      {/* Mobile Luxury Slide Drawer - OUTSIDE header so backdrop-filter does NOT trap fixed position */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-x-0 top-[68px] bottom-0 z-50 flex flex-col justify-between overflow-y-auto border-t border-white/[0.08] bg-ink p-6 backdrop-blur-2xl lg:hidden"
+          >
+            <nav aria-label="Mobile navigation" className="flex flex-col gap-2">
+              {navigation.map((item) => {
+                const isActive =
+                  item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+                return (
+                  <Link
+                    to={item.to}
+                    key={item.to}
+                    onClick={() => setOpen(false)}
+                    className={`flex items-center justify-between rounded-2xl border px-5 py-3.5 transition-all ${
+                      isActive
+                        ? "border-volt/40 bg-volt/10 text-volt font-semibold"
+                        : "border-white/[0.06] bg-white/[0.02] text-frost hover:border-white/20"
+                    }`}
+                  >
+                    <span className="font-display text-lg font-bold">{item.label}</span>
+                    <span className="font-mono text-xs text-frost-muted">{item.num}</span>
+                  </Link>
+                );
+              })}
+
+              <div className="my-2 border-t border-white/[0.08]" />
+
+              <div className="grid grid-cols-2 gap-2">
+                <Link
+                  to="/blog"
+                  onClick={() => setOpen(false)}
+                  className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3 text-center text-xs font-medium text-frost-muted hover:text-frost"
+                >
+                  Journal
+                </Link>
+                <Link
+                  to="/contact"
+                  onClick={() => setOpen(false)}
+                  className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3 text-center text-xs font-medium text-frost-muted hover:text-frost"
+                >
+                  Contact
+                </Link>
+              </div>
+            </nav>
+
+            {/* Bottom drawer actions */}
+            <div className="mt-8 space-y-3 pt-6 border-t border-white/[0.08]">
+              <Button
+                asChild
+                className="h-12 w-full rounded-full bg-volt font-semibold text-ink shadow-[0_6px_20px_rgba(230,255,0,0.3)] hover:bg-volt/95"
+              >
+                <Link to="/build-my-app" onClick={() => setOpen(false)}>
+                  Start a project with me <ArrowUpRight className="ml-1 size-4" />
+                </Link>
+              </Button>
+
+              <a
+                href="https://wa.me/918227910516"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] text-sm font-medium text-frost hover:border-volt/40 hover:text-volt transition"
+              >
+                <MessageCircle className="size-4 text-volt" />
+                <span>WhatsApp: +91 8227910516</span>
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="flex flex-1 flex-col">{children}</div>
 
