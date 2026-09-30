@@ -20,6 +20,7 @@ import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProcessRouteImport } from './routes/process'
+import { Route as RetailBillingPanelRouteImport } from './routes/retail-billing-panel'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as StoreRouteImport } from './routes/store'
 import { Route as TermsRouteImport } from './routes/terms'
@@ -82,6 +83,11 @@ const ProcessRoute = ProcessRouteImport.update({
   path: '/process',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RetailBillingPanelRoute = RetailBillingPanelRouteImport.update({
+  id: '/retail-billing-panel',
+  path: '/retail-billing-panel',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -125,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
+  '/retail-billing-panel': typeof RetailBillingPanelRoute
   '/services': typeof ServicesRoute
   '/store': typeof StoreRouteWithChildren
   '/terms': typeof TermsRoute
@@ -144,6 +151,7 @@ export interface FileRoutesByTo {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
+  '/retail-billing-panel': typeof RetailBillingPanelRoute
   '/services': typeof ServicesRoute
   '/store': typeof StoreRouteWithChildren
   '/terms': typeof TermsRoute
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/process': typeof ProcessRoute
+  '/retail-billing-panel': typeof RetailBillingPanelRoute
   '/services': typeof ServicesRoute
   '/store': typeof StoreRouteWithChildren
   '/terms': typeof TermsRoute
@@ -185,6 +194,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/process'
+    | '/retail-billing-panel'
     | '/services'
     | '/store'
     | '/terms'
@@ -204,6 +214,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/process'
+    | '/retail-billing-panel'
     | '/services'
     | '/store'
     | '/terms'
@@ -223,6 +234,7 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/process'
+    | '/retail-billing-panel'
     | '/services'
     | '/store'
     | '/terms'
@@ -243,6 +255,7 @@ export interface RootRouteChildren {
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   ProcessRoute: typeof ProcessRoute
+  RetailBillingPanelRoute: typeof RetailBillingPanelRoute
   ServicesRoute: typeof ServicesRoute
   StoreRoute: typeof StoreRouteWithChildren
   TermsRoute: typeof TermsRoute
@@ -325,6 +338,13 @@ declare module '@tanstack/react-router' {
       path: '/process'
       fullPath: '/process'
       preLoaderRoute: typeof ProcessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/retail-billing-panel': {
+      id: '/retail-billing-panel'
+      path: '/retail-billing-panel'
+      fullPath: '/retail-billing-panel'
+      preLoaderRoute: typeof RetailBillingPanelRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -416,6 +436,7 @@ const rootRouteChildren: RootRouteChildren = {
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   ProcessRoute: ProcessRoute,
+  RetailBillingPanelRoute: RetailBillingPanelRoute,
   ServicesRoute: ServicesRoute,
   StoreRoute: StoreRouteWithChildren,
   TermsRoute: TermsRoute,

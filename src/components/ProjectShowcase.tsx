@@ -7,7 +7,7 @@ export function ProjectShowcase({ project, index }: { project: Project; index: n
       <div className="grid grid-cols-12 gap-x-6 gap-y-10">
         <Reveal className="col-span-12 lg:col-span-5">
           <p className="label-mono mb-6">
-            {String(index + 1).padStart(2, "0")} — Current release
+            {String(index + 1).padStart(2, "0")} — {index === 0 ? "Current release" : "Also released"}
           </p>
           <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-extrabold leading-[0.95] tracking-[-0.03em]">
             {project.name}

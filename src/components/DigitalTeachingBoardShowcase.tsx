@@ -9,7 +9,12 @@ import { boardProjects as projects, boardSite as site } from "@/data/board";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 
-export function DigitalTeachingBoardShowcase() {
+export function DigitalTeachingBoardShowcase({ activeProjectId }: { activeProjectId?: string }) {
+  const activeProject = activeProjectId ? projects.find((p) => p.id === activeProjectId) : null;
+  const otherProjects = projects.filter((p) => p.status === "released" && p.id !== activeProjectId);
+  const displayProjects = activeProject ? [activeProject] : projects.filter((p) => p.status === "released");
+  const mainProject = displayProjects[0] ?? projects[0]!;
+
   return (
     <div className="min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground">
       {/* Top navigation back to main portfolio */}
@@ -32,11 +37,9 @@ export function DigitalTeachingBoardShowcase() {
       <Hero />
       <main className="mx-auto max-w-6xl px-6">
         <section id="release">
-          {projects
-            .filter((p) => p.status === "released")
-            .map((p, i) => (
-              <ProjectShowcase key={p.id} project={p} index={i} />
-            ))}
+          {displayProjects.map((p, i) => (
+            <ProjectShowcase key={p.id} project={p} index={i} />
+          ))}
         </section>
         <Roadmap />
         <SuggestionBox />
@@ -48,11 +51,11 @@ export function DigitalTeachingBoardShowcase() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            name: projects[0]!.name,
-            applicationCategory: "EducationalApplication",
+            name: mainProject.name,
+            applicationCategory: "BusinessApplication",
             operatingSystem: "Windows",
-            softwareVersion: projects[0]!.version,
-            description: projects[0]!.description,
+            softwareVersion: mainProject.version,
+            description: mainProject.description,
             author: { "@type": "Person", name: site.makerName },
             offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
           }),

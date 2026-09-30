@@ -1,3 +1,4 @@
+import { BASE_URL } from "@/config/site";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,9 @@ export const Route = createFileRoute("/portfolio/$slug")({
     return project;
   },
   head: ({ loaderData }) => ({
+    links: [
+      { rel: "canonical", href: `${BASE_URL}/portfolio/${loaderData?.slug ?? ""}` },
+    ],
     meta: [
       { title: `${loaderData?.name ?? "Project"} — BuildMyApp by Ravana` },
       { name: "description", content: loaderData?.summary ?? "An app project by Ravana." },
@@ -37,7 +41,10 @@ function ProjectDetailPage() {
   const project = Route.useLoaderData();
 
   if (project.slug === "digital-teaching-board") {
-    return <DigitalTeachingBoardShowcase />;
+    return <DigitalTeachingBoardShowcase activeProjectId="digital-teaching-board" />;
+  }
+  if (project.slug === "retail-billing-panel") {
+    return <DigitalTeachingBoardShowcase activeProjectId="retail-billing-panel" />;
   }
 
   return (

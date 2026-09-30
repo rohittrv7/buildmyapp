@@ -11,8 +11,12 @@ export const Route = createFileRoute("/process")({
       { name: "description", content: "Simple steps from your idea to a finished app." },
       { property: "og:title", content: "How It Works — BuildMyApp by Ravana" },
       { property: "og:description", content: "Simple steps from your idea to a finished app." },
+      { property: "og:url", content: "https://buildmyapp.store/process" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://buildmyapp.store/process" },
     ],
   }),
   component: ProcessPage,

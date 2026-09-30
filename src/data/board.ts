@@ -1,4 +1,6 @@
 import dtbScreenshot from "@/assets/dtb-screenshot.jpg";
+// Screenshot: Replace with your final screenshot asset anytime
+import retailScreenshot from "@/assets/retailer-screenshot.jpg";
 
 export const boardSite = {
   makerName: "Ravana",
@@ -47,6 +49,26 @@ export const boardProjects: BoardProject[] = [
     screenshot: dtbScreenshot,
     status: "released",
   },
+  {
+    id: "retail-billing-panel",
+    name: "RetailDesk",
+    tagline: "A complete billing counter for your shop, built into one app.",
+    description:
+      "Electron-based local desktop app jo retailers ke liye banaya gaya hai — product listing management, stock/inventory updates, billing aur invoice printing, customer ledger (debit/credit tracking) — sab kuch ek hi local database mein, bina internet ke.",
+    features: [
+      { title: "Inventory & listing", detail: "Add, edit, aur track products with live stock counts." },
+      { title: "Billing & printing", detail: "Generate aur print invoices directly from the counter, no extra software needed." },
+      { title: "Customer ledger", detail: "Debit/credit tracking per customer, built right into the panel." },
+      { title: "Works offline", detail: "No account, no cloud, no internet required. Local database, installs and runs." },
+    ],
+    // PLACEHOLDER: Update with your exact GitHub Release download link when published
+    downloadUrl: "https://github.com/rohittrv7/finalretailer/releases/download/Retailer_POS/RetailerApp.Setup.1.0.0.exe",
+    version: "1.0.0",
+    platform: "Windows",
+    fileSize: "~92 MB",
+    screenshot: retailScreenshot,
+    status: "released",
+  },
 ];
 
 export type BoardRoadmapItem = {
@@ -62,6 +84,13 @@ export const boardRoadmap: BoardRoadmapItem[] = [
     id: "digital-teaching-board",
     name: "Digital Teaching Board",
     blurb: "The full-screen classroom board. Out now for Windows.",
+    target: "Released",
+    status: "released",
+  },
+  {
+    id: "retail-billing-panel",
+    name: "RetailDesk (Billing & Inventory)",
+    blurb: "Offline billing counter and customer khata ledger for local shops. Out now for Windows.",
     target: "Released",
     status: "released",
   },

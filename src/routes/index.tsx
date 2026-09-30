@@ -30,8 +30,12 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "I build simple, fast and reliable mobile apps, websites and desktop software.",
       },
+      { property: "og:url", content: "https://buildmyapp.store" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://buildmyapp.store" },
     ],
   }),
   component: HomePage,

@@ -1,9 +1,8 @@
 import { motion } from "motion/react";
 import { boardSite as site, boardProjects as projects } from "@/data/board";
 
-const released = projects.filter((p) => p.status === "released").length;
-
 export function Hero() {
+  const released = projects.filter((p) => p.status === "released").length;
   return (
     <header className="relative overflow-hidden border-b border-border">
       {/* generative background: drifting accent field + hairline grid */}

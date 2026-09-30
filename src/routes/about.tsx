@@ -12,8 +12,12 @@ export const Route = createFileRoute("/about")({
       { name: "description", content: "I am an app developer. I build mobile apps, websites and desktop software that are simple, fast and reliable." },
       { property: "og:title", content: "Hi, I'm Ravana — BuildMyApp" },
       { property: "og:description", content: "I build simple, fast and reliable software." },
+      { property: "og:url", content: "https://buildmyapp.store/about" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://buildmyapp.store/about" },
     ],
   }),
   component: AboutPage,

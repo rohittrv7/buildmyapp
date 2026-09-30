@@ -13,8 +13,12 @@ export const Route = createFileRoute("/portfolio")({
       { name: "description", content: "Apps and software I have built. Tap any project to see details." },
       { property: "og:title", content: "My Work — BuildMyApp by Ravana" },
       { property: "og:description", content: "Apps and software I have built." },
+      { property: "og:url", content: "https://buildmyapp.store/portfolio" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://buildmyapp.store/portfolio" },
     ],
   }),
   component: PortfolioRouteComponent,

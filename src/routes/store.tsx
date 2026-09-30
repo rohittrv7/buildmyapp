@@ -12,8 +12,12 @@ export const Route = createFileRoute("/store")({
       { name: "description", content: "Download software I have already built. Some are free, some are paid." },
       { property: "og:title", content: "Ready-Made Software — BuildMyApp by Ravana" },
       { property: "og:description", content: "Download software I have already built. Some are free, some are paid." },
+      { property: "og:url", content: "https://buildmyapp.store/store" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://buildmyapp.store/store" },
     ],
   }),
   component: StoreRouteComponent,

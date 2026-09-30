@@ -1,3 +1,4 @@
+import retailScreenshot from "@/assets/retailer-screenshot.jpg";
 import dtbScreenshot from "@/assets/dtb-screenshot.jpg";
 
 export const site = {
@@ -27,6 +28,19 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    slug: "retail-billing-panel",
+    name: "RetailDesk",
+    category: "Desktop",
+    kind: "Software build",
+    summary: "A complete billing counter and inventory manager for retailers.",
+    problem: "Retailers lose time with bloated cloud billing software that slows down or stops working when the internet drops.",
+    solution: "An offline-first Windows desktop app with local SQLite storage, instant thermal printing, and automatic GST calculation.",
+    result: "A reliable counter POS that speeds up checkout lines, keeps live stock counts, and tracks customer credit balances locally.",
+    stack: ["Electron", "React", "TypeScript", "SQLite"],
+    features: ["Inventory & stock tracking", "Fast GST billing & printing", "Customer khata ledger", "100% offline & local data"],
+    screenshot: retailScreenshot,
+  },
   {
     slug: "cadence",
     name: "Cadence",
@@ -79,6 +93,26 @@ export const projects: Project[] = [
 ];
 
 export const products = [
+  {
+    slug: "retailer-pos",
+    name: "RetailDesk POS Terminal",
+    category: "Desktop",
+    version: "1.0.0",
+    size: "92 MB",
+    price: "Free",
+    description: "Complete offline billing counter, live inventory manager, and customer ledger for shop owners.",
+    icon: "🛒",
+    file: "https://github.com/rohittrv7/finalretailer/releases/download/Retailer_POS/RetailerApp.Setup.1.0.0.exe",
+    requirements: "Windows 10/11 (64-bit)",
+    features: [
+      "Works 100% offline with local SQLite database",
+      "Fast billing counter with GST slab calculations",
+      "Customer Khata ledger for credit/debit tracking",
+      "Live inventory management and thermal invoice printing",
+      "No account or subscription required",
+    ],
+  },
+
   {
     slug: "focus-board",
     name: "Focus Board",

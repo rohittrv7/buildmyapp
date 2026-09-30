@@ -9,8 +9,12 @@ export const Route = createFileRoute("/privacy")({
       { name: "description", content: "I respect your privacy. No trackers, no selling data, and 100% respect for your information." },
       { property: "og:title", content: "Privacy Policy — BuildMyApp by Ravana" },
       { property: "og:description", content: "Simple, honest privacy policy." },
+      { property: "og:url", content: "https://buildmyapp.store/privacy" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://buildmyapp.store/privacy" },
     ],
   }),
   component: PrivacyPage,

@@ -13,8 +13,12 @@ export const Route = createFileRoute("/services")({
       { name: "description", content: "Tell me your idea. I will build it and deliver it ready to use." },
       { property: "og:title", content: "What I Can Build For You — BuildMyApp by Ravana" },
       { property: "og:description", content: "Tell me your idea. I will build it and deliver it ready to use." },
+      { property: "og:url", content: "https://buildmyapp.store/services" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://buildmyapp.store/services" },
     ],
   }),
   component: ServicesPage,

@@ -1,3 +1,4 @@
+import { BASE_URL } from "@/config/site";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Clock, Calendar, ArrowUpRight, Share2, Check } from "lucide-react";
 import { useState } from "react";
@@ -12,6 +13,9 @@ export const Route = createFileRoute("/blog/$slug")({
     return post;
   },
   head: ({ loaderData }) => ({
+    links: [
+      { rel: "canonical", href: `${BASE_URL}/blog/${loaderData?.slug ?? ""}` },
+    ],
     meta: [
       { title: `${loaderData?.title ?? "Article"} — BuildMyApp by Ravana` },
       { name: "description", content: loaderData?.excerpt ?? "A guide from Ravana." },

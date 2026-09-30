@@ -12,8 +12,12 @@ export const Route = createFileRoute("/contact")({
       { name: "description", content: "Message me directly by email or WhatsApp to talk about your app." },
       { property: "og:title", content: "Contact Ravana — BuildMyApp" },
       { property: "og:description", content: "Direct communication for your app build." },
+      { property: "og:url", content: "https://buildmyapp.store/contact" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://buildmyapp.store/contact" },
     ],
   }),
   component: ContactPage,

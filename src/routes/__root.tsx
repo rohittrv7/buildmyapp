@@ -116,6 +116,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "google-site-verification", content: "yiOVignidi7z8pYtQIIzlbYN89uI" },
+      { name: "theme-color", content: "#0C0E12" },
       { title: "BuildMyApp by Ravana — Independent App Developer" },
       {
         name: "description",
@@ -155,6 +157,7 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"WebSite\",\"@id\":\"https://buildmyapp.store/#website\",\"url\":\"https://buildmyapp.store/\",\"name\":\"BuildMyApp by Ravana\",\"description\":\"Independent software developer portfolio, ready-made offline desktop tools, and custom app orders.\"},{\"@type\":\"Person\",\"@id\":\"https://buildmyapp.store/#person\",\"name\":\"Ravana\",\"jobTitle\":\"Independent Software Developer\",\"url\":\"https://buildmyapp.store/about\",\"sameAs\":[\"https://github.com/rohittrv7\"]}]}" }} />
       </head>
       <body>
         {children}

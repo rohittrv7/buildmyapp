@@ -11,8 +11,12 @@ export const Route = createFileRoute("/blog")({
       { name: "description", content: "Simple guides and advice on building apps from idea to launch." },
       { property: "og:title", content: "Journal — BuildMyApp by Ravana" },
       { property: "og:description", content: "Simple guides and advice on building apps." },
+      { property: "og:url", content: "https://buildmyapp.store/blog" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://buildmyapp.store/blog" },
     ],
   }),
   component: BlogRouteComponent,

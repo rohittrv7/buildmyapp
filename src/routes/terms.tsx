@@ -8,8 +8,12 @@ export const Route = createFileRoute("/terms")({
       { name: "description", content: "Simple, honest terms: source code ownership, milestone payments, and 30 days bug fixing." },
       { property: "og:title", content: "Terms — BuildMyApp by Ravana" },
       { property: "og:description", content: "Simple, honest terms." },
+      { property: "og:url", content: "https://buildmyapp.store/terms" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://buildmyapp.store/terms" },
     ],
   }),
   component: TermsPage,

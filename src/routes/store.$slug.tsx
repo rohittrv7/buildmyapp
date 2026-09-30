@@ -1,3 +1,4 @@
+import { BASE_URL } from "@/config/site";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowDownToLine, ArrowLeft, Check } from "lucide-react";
 import { PageFrame } from "@/components/site";
@@ -10,6 +11,9 @@ export const Route = createFileRoute("/store/$slug")({
     return product;
   },
   head: ({ loaderData }) => ({
+    links: [
+      { rel: "canonical", href: `${BASE_URL}/store/${loaderData?.slug ?? ""}` },
+    ],
     meta: [
       { title: `${loaderData?.name ?? "Software"} — BuildMyApp by Ravana` },
       { name: "description", content: loaderData?.description ?? "Ready-made software by Ravana." },
@@ -66,7 +70,7 @@ function ProductDetailPage() {
             <span className="text-frost-muted">Price</span>
             <span className="text-right font-bold text-volt">{product.price}</span>
             <span className="text-frost-muted">Requirements</span>
-            <span className="text-right text-frost">Web browser</span>
+            <span className="text-right text-frost">{(product as any).requirements || "Web browser"}</span>
           </div>
           <a
             href={product.file}
@@ -75,7 +79,7 @@ function ProductDetailPage() {
           >
             <ArrowDownToLine className="size-4" /> Download now
           </a>
-          <p className="mt-3 text-center text-xs text-frost-muted">Works in your browser. No sign up needed.</p>
+          <p className="mt-3 text-center text-xs text-frost-muted">{(product as any).requirements ? "Windows desktop installer (.exe). 100% offline." : "Works in your browser. No sign up needed."}</p>
         </aside>
 
         <div className="md:col-span-2 pt-4">
@@ -84,6 +88,22 @@ function ProductDetailPage() {
           </Link>
         </div>
       </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: product.name,
+            applicationCategory: product.category === "Desktop" ? "BusinessApplication" : "WebApplication",
+            operatingSystem: (product as any).requirements || "Windows, Web",
+            softwareVersion: product.version,
+            description: product.description,
+            author: { "@type": "Person", name: "Ravana" },
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          }),
+        }}
+      />
     </PageFrame>
   );
 }
