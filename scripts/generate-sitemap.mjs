@@ -100,8 +100,8 @@ fs.writeFileSync(path.join(publicDir, 'robots.txt'), robotsTxt, 'utf8');
 console.log('✓ Generated public/robots.txt');
 
 // Ensure google verification file exists in public/
-const verifyFilePath = path.join(publicDir, 'googleced34e77a2f226dd.html');
+const verifyFilePath = path.join(publicDir, 'googlec589603454589176.html');
 if (!fs.existsSync(verifyFilePath)) {
-  fs.writeFileSync(verifyFilePath, 'google-site-verification: googleced34e77a2f226dd.html', 'utf8');
-  console.log('✓ Verified public/googleced34e77a2f226dd.html');
+  fs.writeFileSync(verifyFilePath, 'google-site-verification: googlec589603454589176.html', 'utf8');
+  console.log('✓ Verified public/googlec589603454589176.html');
 }
